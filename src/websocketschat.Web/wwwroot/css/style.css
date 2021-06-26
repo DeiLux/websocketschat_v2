@@ -1,0 +1,61 @@
+.btn-primary {
+    color: #fff;
+    background-color: #47714d;
+    border-color: #47714d;
+}
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary:visited{
+    color: #e0af34;
+    background-color: #47714d;
+    border-color: #47714d;
+    box-shadow: 0 0 0 0.2rem rgba(224,175,52,.5);
+}
+btn.btn-primary:active {
+    color: #e0af34;
+    background-color: #47714d;
+    border-color: #47714d;
+    box-shadow: 0 0 0 0.2rem rgba(224,175,52,.5);
+}
+
+    a {
+        color: #47714d;
+    }
+
+a:hover {
+    color: #e0af34;
+}
+
+.input-group-text {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-align: center;
+    align-items: center;
+    padding: .375rem .75rem;
+    margin-bottom: 0;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #fff;
+    text-align: center;
+    white-space: nowrap;
+    background-color: #47714d;
+    border: 1px solid #ced4da;
+    border-radius: .25rem;
+}
+.form-control:focus {
+    color: #495057;
+    background-color: #fff;
+    border-color: #47714d;
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem rgba(224,175,52,.5);
+}
+
+
+.registration {
+    display: none;
+}
+
+.chat {
+    display: none;
+}

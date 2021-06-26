@@ -1,0 +1,38 @@
+version: '3.7'
+
+networks:
+  dev-network:
+    driver: bridge
+
+services:
+
+  web_dockerized:
+    image: web_dockerized:latest
+    depends_on:
+      - "postgres_dockerized"
+    build:
+      context: ./src
+      dockerfile: prod.Dockerfile
+    ports: 
+      - "80:80"
+    environment:
+      DB_CONNECTION_STRING: "host=postgres_dockerized;port=5432;database=websocketschat_db;username=postgres;password=postgres"
+    networks:
+      - dev-network
+
+  postgres_dockerized:
+    image: postgres:latest
+    ports:
+      - "5432"
+    restart: always
+    volumes:
+      - db_volume:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: "postgres"
+      POSTGRES_PASSWORD: "postgres"
+      POSTGRES_DB: "websocketschat_db"
+    networks:
+      - dev-network
+
+volumes:
+  db_volume:

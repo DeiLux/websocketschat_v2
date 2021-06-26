@@ -1,0 +1,42 @@
+version: '3.7'
+
+networks:
+  dev-network:
+    driver: bridge
+
+services:
+
+  web_dockerized:
+    image: web_dockerized:latest
+    build:
+      context: ./src
+      dockerfile: Dockerfile
+    restart: always
+    ports: 
+      - "80:80"
+    environment:
+      DB_CONNECTION_STRING: 'host=postgres_dockerized;port=5432;database=websocketschat_db;username=postgres;password=postgres'
+    depends_on:
+      - 'postgres_dockerized'
+    networks:
+      - 'dev-network'
+
+  postgres_dockerized:
+    image: postgres:latest
+    restart: always
+    ports: 
+      - "5432"
+    environment:
+      POSTGRES_USER: 'postgres'
+      POSTGRES_PASSWORD: 'postgres'
+      POSTGRES_DB: 'websocketschat_db'
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+#      - ./scripts/init.sql:/docker-entrypoint-initdb.d/init.sql # Точно пока не знаю, но не работает пока... # Dont realy know but this doesnt work,
+#                                                                                                             # Prefered to use Database.Migrate() in Startup.cs
+#                                                                                                             # If you know how to launch with init.sql, pm me shard.f@mail.ru or make pull request =)
+    networks:
+      - 'dev-network'
+
+volumes:
+  pgdata:
